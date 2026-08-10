@@ -1,20 +1,23 @@
-/* 현대적이고 프리미엄한 라이트 테마 변수 정의 */
+/* K-Chao Lesson 1 원본 소스 디자인 기준 전체 대시보드 테마 완벽 동기화 */
 :root {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #ffffff;
-  --bg-accent: #f1f5f9;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --color-brand: #3b82f6;
-  --color-brand-hover: #1d4ed8;
-  --border-color: #e2e8f0;
+  --bg-primary: #eef3f3;       /* 원본 전체 배경 */
+  --bg-secondary: #ffffff;     /* 서피스 화이트 */
+  --bg-accent: #f5f8f8;        /* 캔버스 그레이 */
+  --text-primary: #04303d;     /* 기본 잉크색 */
+  --text-secondary: #61727a;   /* 뮤트 텍스트 */
+  --color-brand: #00a8a6;      /* 브랜드 테일 */
+  --color-brand-hover: #008e8d;/* 브랜드 어두운 테일 */
+  --color-brand-soft: #ddfbfa; /* 브랜드 소프트 테일 */
+  --border-color: #dce5e7;     /* 연한 라인선 */
+  --shadow: 0 20px 55px rgb(4 48 61 / 12%); /* K-Chao 전용 입체 섀도우 */
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.02em;
 }
 
 body {
@@ -23,6 +26,7 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* 대시보드 레이아웃 */
@@ -30,6 +34,7 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
+  background: var(--bg-primary);
 }
 
 /* 사이드바 (Anydevice 에뮬레이터) */
@@ -39,16 +44,28 @@ body {
   border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  padding: 24px 20px;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.02);
+  padding: 28px 20px;
+  box-shadow: 2px 0 20px rgb(4 48 61 / 3%);
+  z-index: 10;
 }
 
 .sidebar h2 {
-  font-size: 1.1rem;
-  margin-bottom: 24px;
-  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 28px;
+  font-weight: 850;
   color: var(--text-primary);
-  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar h2::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 18px;
+  background-color: var(--color-brand);
+  border-radius: 99px;
 }
 
 .menu-section {
@@ -59,9 +76,9 @@ body {
   font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--text-secondary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   letter-spacing: 0.05em;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .btn-group {
@@ -75,37 +92,39 @@ body {
   background-color: var(--bg-accent);
   color: var(--text-secondary);
   border: 1px solid var(--border-color);
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 10px 12px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-  font-weight: 500;
+  font-size: 0.85rem;
+  transition: all 0.22s ease-in-out;
+  font-weight: 800;
 }
 
 .btn.active, .btn:hover {
   background-color: var(--color-brand);
   color: #ffffff;
   border-color: var(--color-brand);
+  box-shadow: 0 4px 12px rgba(0, 168, 166, 0.15);
 }
 
 /* 콤보 박스 스타일 */
 .combo-box {
   width: 100%;
-  padding: 10px 12px;
-  background-color: var(--bg-secondary);
+  padding: 11px 13px;
+  background-color: #ffffff;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
-  font-size: 0.9rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
   outline: none;
   cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s;
+  font-weight: 800;
 }
 
 .combo-box:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 0 3px rgb(0 168 166 / 15%);
 }
 
 /* 프리뷰 영역 */
@@ -114,33 +133,38 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f1f5f9;
+  background-color: var(--bg-primary);
   padding: 20px;
   position: relative;
 }
 
-/* 디바이스 시뮬레이터 */
+/* 디바이스 시뮬레이터 (kchao-lesson1-main의 모바일 쉘 스타일) */
 .device-frame {
   background-color: #000;
-  border: 12px solid #0f172a;
-  border-radius: 36px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
+  border: 12px solid #04303d;
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
 .device-frame.ios {
-  border-radius: 40px;
+  border-radius: 36px;
 }
 
 .device-screen {
-  background-color: #fff;
+  background-color: var(--bg-secondary);
   flex: 1;
   overflow-y: auto;
   position: relative;
-  color: #333;
+  color: var(--text-primary);
+  scrollbar-width: none;
+}
+
+.device-screen::-webkit-scrollbar {
+  display: none;
 }
 
 /* 해상도 크기 정의 */
@@ -159,28 +183,29 @@ body {
   width: 494px;
   background-color: var(--bg-secondary);
   border-left: 1px solid var(--border-color);
-  padding: 20px;
+  padding: 28px 24px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.02);
+  gap: 24px;
+  box-shadow: -2px 0 20px rgb(4 48 61 / 3%);
 }
 
 .info-card {
-  background-color: var(--bg-primary);
-  border-radius: 8px;
-  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
   border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(4, 48, 61, 0.02);
 }
 
 .info-card h3 {
   font-size: 0.95rem;
-  margin-bottom: 12px;
-  color: var(--color-brand);
+  margin-bottom: 14px;
+  color: var(--color-brand-hover);
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 6px;
-  font-weight: 700;
+  padding-bottom: 8px;
+  font-weight: 850;
 }
 
 .section-content {
@@ -190,19 +215,20 @@ body {
 }
 
 .section-content ul {
-  padding-left: 20px;
-  margin-top: 6px;
+  padding-left: 18px;
+  margin-top: 8px;
 }
 
-/* 프로토타입 내부 UI 스타일 */
+/* 프로토타입 내부 UI 스타일 (K-Chao 색상 매핑) */
 .proto-app-bar {
-  background-color: #3b82f6;
-  color: white;
-  padding: 16px;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: bold;
+  font-weight: 850;
 }
 
 .proto-content {
@@ -213,25 +239,27 @@ body {
 }
 
 .proto-card {
-  background: white;
-  border-radius: 12px;
+  background: var(--bg-secondary);
+  border-radius: 14px;
   padding: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(4, 48, 61, 0.04);
+  border: 1px solid var(--border-color);
 }
 
 .proto-button {
-  background-color: #3b82f6;
+  background-color: var(--color-brand);
   color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
+  border: 0;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 850;
   cursor: pointer;
   text-align: center;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease-in-out;
+  font-size: 13px;
 }
 
 .proto-button:hover {
-  background-color: #2563eb;
+  background-color: var(--color-brand-hover);
+  box-shadow: 0 4px 14px rgba(0, 168, 166, 0.2);
 }
